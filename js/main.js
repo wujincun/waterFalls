@@ -2,7 +2,28 @@
  * Created by wujincun on 2016/8/29.
  */
 window.onload = function () {
-    waterfall('main', 'box')
+    waterfall('main', 'box');
+    var data = {
+        'data':[{'src':'P_013.jpg'},{'src':'P_014.jpg'},{'src':'P_015.jpg'},{'src':'P_016.jpg'},{'src':'P_017.jpg'},{'src':'P_018.jpg'},{'src':'P_019.jpg'},]
+    };
+    window.onscroll = function () {
+         if (checkScrollSlide) {
+             var oParent = document.getElementById('main');
+            //将数据块渲染到页面的尾部
+             for(var i=0;i<data.data.length;i++){
+                 var oBox = document.createElement('div');
+                 oBox.className = 'box';
+                 oParent.appendChild(oBox);
+                 var oPic = document.createElement('div');
+                 oPic.className = 'pic';
+                 oBox.appendChild(oPic);
+                 var oImg = document.createElement('img');
+                 oImg.src = 'images/' + data.data[i].src;
+                 oPic.appendChild(oImg)
+             }
+             waterfall('main', 'box');
+         }
+    }
 };
 function waterfall(parent, box) {
     //将main下的所有class名为box的元素取出
@@ -22,7 +43,7 @@ function waterfall(parent, box) {
             var index = getMinHIndex(hArr, minH);
             oBoxes[i].style.position = 'absolute';
             oBoxes[i].style.top = minH + 'px';
-           // oBoxes[i].style.left = oBoxW * index + 'px';
+            // oBoxes[i].style.left = oBoxW * index + 'px';
             oBoxes[i].style.left = oBoxes[index].offsetLeft + 'px';
             hArr[index] += oBoxes[i].offsetHeight;
         }
@@ -45,4 +66,14 @@ function getMinHIndex(arr, val) {
             return i
         }
     }
+}
+//监测是否具备加载数据块的条件
+function checkScrollSlide() {
+    var oParent = document.getElementById('main');
+    var oBoxes = getByClass(oParent, 'box');
+    var lastBoxH = oBoxes[oBoxes.length - 1].offsetTop + Math.floor(oBoxes[oBoxes.length - 1].offsetHeight / 2)
+    var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+    //浏览时可视高度
+    var height = document.body.clientHeight || document.documentElement.clientHeight;
+    return (lastBoxH < scrollTop + height) ? true : false;
 }

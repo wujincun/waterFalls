@@ -1,0 +1,30 @@
+body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fildset,table,td,img,div,dl,dt,dd,input{margin:0;padding:0;border:0;}
+body{ font-size:12px;}
+img{border:none;}
+ul,ol{ list-style:none;}
+input,select,textarea{outline:none;}
+textarea{resize:none;}
+a{ text-decoration:none;}
+
+/*清浮动*/
+.clearfix:after{content:"";display:block;clear:both;}
+.clearfix{zoom:1;}
+
+//内容
+#main{
+  position: relative;
+  .box{
+    padding: 15px 0 0 15px;
+    float: left;
+    .pic{
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 5px #ccc;
+      img{
+        width: 165px;
+        height: auto;
+      }
+    }
+  }
+}

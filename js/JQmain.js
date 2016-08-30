@@ -11,7 +11,6 @@ var obj = {};
         this.render();
         this.bind();
     }
-
     $.extend(Waterfall.prototype, {
         init: function () {
             this.stage = $('#main');

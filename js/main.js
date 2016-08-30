@@ -7,7 +7,7 @@ window.onload = function () {
         'data':[{'src':'P_013.jpg'},{'src':'P_014.jpg'},{'src':'P_015.jpg'},{'src':'P_016.jpg'},{'src':'P_017.jpg'},{'src':'P_018.jpg'},{'src':'P_019.jpg'},]
     };
     window.onscroll = function () {
-         if (checkScrollSlide) {
+         if (checkScrollSlide()) {
              var oParent = document.getElementById('main');
             //将数据块渲染到页面的尾部
              for(var i=0;i<data.data.length;i++){
